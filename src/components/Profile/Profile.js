@@ -30,6 +30,7 @@ export class Profile extends Component {
   render() {
     return (
       <div>
+        <h1>{this.state.count}</h1>
         <div className="part1">
         <img className="photo" src={this.props.profilePerson.imgSrc} alt="" />
         <h6 >
