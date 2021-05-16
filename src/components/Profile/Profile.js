@@ -1,12 +1,37 @@
-import React from "react";
+import React, { Component } from 'react'
 import { Button } from "react-bootstrap";
 
-
-const Profile = ({ profilePerson}) => {
-  return (
-    <div>
-      <div className="part1">
-        <img className="photo" src={profilePerson.imgSrc} alt="" />
+export class Profile extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      count:0,
+      memoryId:null
+    };
+  }
+  componentDidMount(){
+    console.log("componentDidMount()")
+    let memory =setInterval(() => {
+      this.increment()
+    }, 1000);
+    this.setState({memoryId:memory})
+  }
+  componentDidUpdate(){
+    console.log("componentDidUpdate()")
+  }
+  increment = () =>{
+    this.setState({ count:this.state.count+1  });
+  }
+  componentWillUnmount(){
+    console.log("componentWillUnmount()")
+    clearInterval(this.state.memoryId)
+  }
+  render() {
+    return (
+      <div>
+        <div className="part1">
+        <img className="photo" src={this.props.profilePerson.imgSrc} alt="" />
         <h6 >
           87 <br /> Publications{" "}
         </h6>{" "}
@@ -20,13 +45,13 @@ const Profile = ({ profilePerson}) => {
       </div>
       <div className="part2">
         <h4>
-          {profilePerson.fullName}
+          {this.props.profilePerson.fullName}
           <Button variant="primary" >
             S'abonner
           </Button>
         </h4>
-        <h6 style={{ color: "#ACACAC",marginRight:'70px' }}>{profilePerson.profession}</h6>
-        <h6 >{profilePerson.bio}</h6> 
+        <h6 style={{ color: "#ACACAC",marginRight:'70px' }}>{this.props.profilePerson.profession}</h6>
+        <h6 >{this.props.profilePerson.bio}</h6> 
       </div>
       <div className=" part3">
         <div className=" part31">
@@ -132,8 +157,9 @@ const Profile = ({ profilePerson}) => {
           />
         </div>
       </div>
-    </div>
-  );
-};
+      </div>
+    )
+  }
+}
 
-export default Profile;
+export default Profile

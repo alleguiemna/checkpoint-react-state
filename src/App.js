@@ -17,21 +17,10 @@ export class App extends Component {
       profession: "Etudiante chez Go My Code",
     },
     isShow:false,
-    memoryId:null
   };
-  componentDidMount(){
-    console.log("componentDidMount()")
-    let memory=setInterval(() => {
-      
-    }, 1000);
-    this.setState({memoryId:memory})
-  }
   handleClick = () => {
     this.setState({ isShow: !this.state.isShow });
   };
-  componentWillUnmout(){
-    console.log("componentWillUnmout()")
-  }
   render() {
     return (
       <div>
